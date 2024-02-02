@@ -34,6 +34,14 @@ function Mesusers (req, res) {
     res.send(usersTwitter);
   }
 
+  const IdUser=(req, res) => {
+    const id = parseInt(req.params.id);
+    res.send(
+      usersTwitter.filter((element) => {
+        return element.id === id;
+      })
+    );
+  }
 module.exports ={
-    Mesusers
+    Mesusers,IdUser
 }
