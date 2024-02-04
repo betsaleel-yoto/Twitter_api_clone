@@ -73,7 +73,22 @@ const allTweets = (req, res) => {
   res.send(tweets);
 };
 
+const postTweets = (req, res) => {
+  res.send("Tweet bien envoyé");
+};
+
+const edtTweets = (req, res) => {
+  res.send("Tweet mis à jour");
+};
+
+const removeTweets = (req, res) => {
+  res.send("Tweet bien supprimé");
+};
+
 module.exports = {
   idUserTweets,
   allTweets,
+  postTweets,
+  edtTweets,
+  removeTweets,
 };
