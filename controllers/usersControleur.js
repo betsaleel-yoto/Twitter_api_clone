@@ -30,7 +30,7 @@ const usersTwitter = [
 ];
 
 function Mesusers (req, res) {
-    res.get("Content-Type", "application/json");
+    res.set("Content-Type", "application/json");
     res.send(usersTwitter);
   }
 
@@ -42,6 +42,18 @@ function Mesusers (req, res) {
       })
     );
   }
+
+  const sendData=(req,res)=>{
+    res.send('envoyé')
+}
+
+const userDelete=(req,res)=>{
+  res.send('utilisateur supprimer')
+}
+
+const editUsers=(req,res)=>{
+  res.send('modification enregistrée')
+}
 module.exports ={
-    Mesusers,IdUser
+    Mesusers,IdUser,sendData,userDelete,editUsers
 }
