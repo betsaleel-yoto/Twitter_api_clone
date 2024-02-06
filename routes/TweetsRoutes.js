@@ -10,12 +10,11 @@ const {
 
 
 
-
 router.get("", allTweets);
 router.get("/:id", idUserTweets);
 router.post("", postTweets);
-router.delete("", removeTweets);
-router.put("", edtTweets);
+router.delete("/:id", removeTweets);
+router.put("/:id", edtTweets);
 
 
 

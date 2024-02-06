@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = 3002;
 const tweets = require("./routes/TweetsRoutes.js");
 const users = require("./routes/usersRoutes.js");
 

@@ -74,15 +74,24 @@ const allTweets = (req, res) => {
 };
 
 const postTweets = (req, res) => {
-  res.send("Tweet bien envoyé");
+  tweets.push(req.body);
+  res.send(req.body);
 };
 
 const edtTweets = (req, res) => {
-  res.send("Tweet mis à jour");
+  const id = req.params.id;
+  let count = {
+    count1: 1,
+    countneg1: -1,
+  };
+
+  res.send(tweets[id - 1]);
 };
 
 const removeTweets = (req, res) => {
-  res.send("Tweet bien supprimé");
+  const id = parseInt(req.params.id);
+  tweets.splice(id - 1, 1);
+  res.send("suprrimé");
 };
 
 module.exports = {

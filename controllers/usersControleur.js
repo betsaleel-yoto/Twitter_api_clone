@@ -44,11 +44,14 @@ function Mesusers (req, res) {
   }
 
   const sendData=(req,res)=>{
-    res.send('envoyé')
+    usersTwitter.push(req.body)
+    res.send(req.body);
 }
 
 const userDelete=(req,res)=>{
-  res.send('utilisateur supprimer')
+  const id=parseInt(req.params.id)
+  usersTwitter.splice(id-1,1)
+  res.send('user suprrimé');
 }
 
 const editUsers=(req,res)=>{
