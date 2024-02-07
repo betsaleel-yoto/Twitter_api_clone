@@ -85,7 +85,7 @@ const edtTweets = (req, res) => {
     countneg1: -1,
   };
 
-  res.send(tweets[id - 1]);
+  res.send(tweets[id-1]);
 };
 
 const removeTweets = (req, res) => {
