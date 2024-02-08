@@ -59,8 +59,6 @@ const tweets = [
   },
 ];
 
-
-
 const idUserTweets = (req, res) => {
   const id = parseInt(req.params.id);
   res.send(
@@ -76,8 +74,10 @@ const allTweets = (req, res) => {
 };
 
 const postTweets = (req, res) => {
-  tweets.push(req.body);
-  res.send(req.body);
+  const bodyrequest = req.body;
+  bodyrequest.image=req.file.path;
+  tweets.push(bodyrequest)
+  res.send(tweets);
 };
 
 const edtTweets = (req, res) => {
