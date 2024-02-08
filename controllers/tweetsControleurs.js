@@ -59,6 +59,8 @@ const tweets = [
   },
 ];
 
+let tweetLikes = {}; // Objet pour stocker l'état des likes par tweet
+
 const idUserTweets = (req, res) => {
   const id = parseInt(req.params.id);
   res.send(
@@ -91,10 +93,40 @@ const removeTweets = (req, res) => {
   res.send("suprrimé");
 };
 
+
+const totalLikes = (req, res) => {
+  const tweetId = req.params.id;
+  const likes = tweetLikes[tweetId] || 0;
+  res.json({ likes });
+}
+
+const like =(req, res) => {
+  const tweetId = req.params.id;
+  if (!tweetLikes[tweetId]) {
+    tweetLikes[tweetId] = 1;
+    res.json({ message: "Tweet liked", likes: 1 });
+  } else {
+    tweetLikes[tweetId]++;
+    res.json({ message: "Tweet already liked", likes: tweetLikes[tweetId] });
+  }
+}
+
+const unlike=(req, res) => {
+  const tweetId = req.params.id;
+  if (!tweetLikes[tweetId] || tweetLikes[tweetId] === 0) {
+    res.status(400).json({ message: "Tweet not liked yet" });
+  } else {
+    tweetLikes[tweetId]--;
+    res.json({ message: "Tweet unliked", likes: tweetLikes[tweetId] });
+  }
+}
 module.exports = {
   idUserTweets,
   allTweets,
   postTweets,
   edtTweets,
   removeTweets,
+  like,
+  totalLikes,
+  unlike,
 };
