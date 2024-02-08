@@ -59,6 +59,8 @@ const tweets = [
   },
 ];
 
+
+
 const idUserTweets = (req, res) => {
   const id = parseInt(req.params.id);
   res.send(
@@ -80,12 +82,7 @@ const postTweets = (req, res) => {
 
 const edtTweets = (req, res) => {
   const id = req.params.id;
-  let count = {
-    count1: 1,
-    countneg1: -1,
-  };
-
-  res.send(tweets[id-1]);
+  res.send(putLikes);
 };
 
 const removeTweets = (req, res) => {
