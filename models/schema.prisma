@@ -13,9 +13,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Modèle pour les utilisateurs
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String
+  tweets    Tweet[]  // Relation: Un utilisateur peut avoir plusieurs tweets
+  likes     Like[]   // Relation: Un utilisateur peut liker plusieurs tweets
 }
+
+
+// Modèle pour les tweets (équivalent à vos "posts")
+model Tweet {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  text      String
+  userId    Int      // Clé étrangère: ID de l'utilisateur qui a créé le tweet
+  user      User     @relation(fields: [userId], references: [id]) // Relation: Un tweet est créé par un utilisateur
+  likes     Like[]   // Relation: Un tweet peut avoir plusieurs likes
+}
+
+// Modèle pour les likes
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int      // Clé étrangère: ID de l'utilisateur qui a liké
+  user      User     @relation(fields: [userId], references: [id]) // Relation: Un like est effectué par un utilisateur
+  tweetId   Int      // Clé étrangère: ID du tweet liké
+  tweet     Tweet    @relation(fields: [tweetId], references: [id]) // Relation: Un like est associé à un tweet
+}
+
 
