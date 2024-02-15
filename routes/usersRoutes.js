@@ -16,6 +16,6 @@ router.get("/:id", IdUser);
 router.post("", sendData);
 router.post("/aut", authenticateJWT, passport.initialize());
 router.delete("/:id", userDelete);
-router.put("", editUsers);
+router.put("/:id", editUsers);
 
 module.exports = router;
