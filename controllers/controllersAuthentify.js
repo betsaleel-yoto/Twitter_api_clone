@@ -12,8 +12,6 @@ const jwtOptions = {
 };
 
 passport.use(new JWTStrategy(jwtOptions, function(jwtPayload, done) {
-    // Vérifier si l'utilisateur existe en fonction de jwtPayload
-    // Par exemple, vous pouvez vérifier en utilisant une base de données
     if (jwtPayload.user) {
         return done(null, jwtPayload.user);
     } else {
@@ -21,7 +19,6 @@ passport.use(new JWTStrategy(jwtOptions, function(jwtPayload, done) {
     }
 }));
 
-// Middleware d'authentification Passport.js
 const authenticateJWT = passport.authenticate('jwt', { session: false });
 
 module.exports = { authenticateJWT };

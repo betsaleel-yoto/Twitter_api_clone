@@ -7,7 +7,6 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    // Obtenez l'extension du fichier original
     const extname = path.extname(file.originalname);
     cb(null, file.fieldname + "-" + uniqueSuffix + extname);
   },
