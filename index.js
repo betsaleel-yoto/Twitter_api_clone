@@ -6,7 +6,6 @@ const users = require("./routes/usersRoutes.js");
 
 
 
-
 app.use(express.json());
 
 

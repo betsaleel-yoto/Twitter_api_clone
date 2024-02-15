@@ -1,62 +1,74 @@
-const usersTwitter = [
-  {
-    id: 1,
-    username: "JohnDoe",
-    fullName: "John Doe",
-    bio: "Web Developer passionate about coding!",
-    profilePicture: "https://source.unsplash.com/200x200/?portrait",
-  },
-  {
-    id: 2,
-    username: "JaneSmith",
-    fullName: "Jane Smith",
-    bio: "Designer exploring the beauty of art and technology.",
-    profilePicture: "https://source.unsplash.com/200x200/?face",
-  },
-  {
-    id: 3,
-    username: "TechGuru",
-    fullName: "Tech Guru",
-    bio: "Sharing the latest tech trends and innovations.",
-    profilePicture: "https://source.unsplash.com/200x200/?tech",
-  },
-  {
-    id: 4,
-    username: "CodingNinja",
-    fullName: "Coding Ninja",
-    bio: "Passionate about mastering the art of coding.",
-    profilePicture: "https://source.unsplash.com/200x200/?coding",
-  },
-];
+const { PrismaClient } = require('../models');
 
-function Mesusers (req, res) {
-    res.set("Content-Type", "application/json");
-    res.send(usersTwitter);
+
+const prisma = new PrismaClient()
+
+
+const Mesusers = async (req, res) => {
+  try {
+    const users = await prisma.user.findMany(); // Récupère tous les utilisateurs depuis la base de données
+    res.json(users); // Renvoie les utilisateurs en tant que JSON
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
   }
+};
 
-  const IdUser=(req, res) => {
-    const id = parseInt(req.params.id);
-    res.send(
-      usersTwitter.filter((element) => {
-        return element.id === id;
-      })
-    );
+
+const IdUser = (req, res) => {
+  // const id = parseInt(req.params.id);
+  // res.send(
+  //   usersTwitter.filter((element) => {
+  //     return element.id === id;
+  //   })
+  // );
+};
+
+const sendData = async (req, res) => {
+  try {
+    const { email, username } = req.body; // Récupère les données du corps de la requête
+
+    const user = await prisma.user.create({
+      data: {
+        email,
+        username,
+      },
+    });
+
+    console.log("User created:", user);
+    res.status(201).json(user); // Renvoie la réponse avec le nouvel utilisateur créé
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
   }
+};
 
-  const sendData=(req,res)=>{
-    usersTwitter.push(req.body)
-    res.send(req.body);
-}
+const userDelete = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id); // Récupère l'ID de l'utilisateur à supprimer depuis les paramètres de la requête
 
-const userDelete=(req,res)=>{
-  const id=parseInt(req.params.id)
-  usersTwitter.splice(id-1,1)
-  res.send('user suprrimé');
-}
+    // Utilise Prisma pour supprimer l'utilisateur de la base de données
+    const deletedUser = await prisma.user.delete({
+      where: { id }, // Spécifie l'utilisateur à supprimer en utilisant son ID
+    });
 
-const editUsers=(req,res)=>{
-  res.send('modification enregistrée')
-}
-module.exports ={
-    Mesusers,IdUser,sendData,userDelete,editUsers
-}
+    console.log("User deleted:", deletedUser);
+
+    res.status(200).json({ message: "User deleted successfully" }); // Renvoie une réponse JSON indiquant que l'utilisateur a été supprimé avec succès
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
+  }
+};
+
+
+const editUsers = (req, res) => {
+  res.send("modification enregistrée");
+};
+module.exports = {
+  Mesusers,
+  IdUser,
+  sendData,
+  userDelete,
+  editUsers,
+};
