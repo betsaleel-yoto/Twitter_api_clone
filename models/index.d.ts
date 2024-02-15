@@ -2103,6 +2103,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     text: string | null
+    photo: string | null
     userId: number | null
   }
 
@@ -2111,6 +2112,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     text: string | null
+    photo: string | null
     userId: number | null
   }
 
@@ -2119,6 +2121,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     text: number
+    photo: number
     userId: number
     _all: number
   }
@@ -2139,6 +2142,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     text?: true
+    photo?: true
     userId?: true
   }
 
@@ -2147,6 +2151,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     text?: true
+    photo?: true
     userId?: true
   }
 
@@ -2155,6 +2160,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     text?: true
+    photo?: true
     userId?: true
     _all?: true
   }
@@ -2250,6 +2256,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     text: string
+    photo: string | null
     userId: number
     _count: TweetCountAggregateOutputType | null
     _avg: TweetAvgAggregateOutputType | null
@@ -2277,6 +2284,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     text?: boolean
+    photo?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     likes?: boolean | Tweet$likesArgs<ExtArgs>
@@ -2288,6 +2296,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     text?: boolean
+    photo?: boolean
     userId?: boolean
   }
 
@@ -2309,6 +2318,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       text: string
+      photo: string | null
       userId: number
     }, ExtArgs["result"]["tweet"]>
     composites: {}
@@ -2711,6 +2721,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Tweet", 'DateTime'>
     readonly updatedAt: FieldRef<"Tweet", 'DateTime'>
     readonly text: FieldRef<"Tweet", 'String'>
+    readonly photo: FieldRef<"Tweet", 'String'>
     readonly userId: FieldRef<"Tweet", 'Int'>
   }
     
@@ -4031,6 +4042,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     text: 'text',
+    photo: 'photo',
     userId: 'userId'
   };
 
@@ -4060,6 +4072,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4184,6 +4204,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Tweet"> | Date | string
     updatedAt?: DateTimeFilter<"Tweet"> | Date | string
     text?: StringFilter<"Tweet"> | string
+    photo?: StringNullableFilter<"Tweet"> | string | null
     userId?: IntFilter<"Tweet"> | number
     user?: XOR<UserRelationFilter, UserWhereInput>
     likes?: LikeListRelationFilter
@@ -4194,6 +4215,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     text?: SortOrder
+    photo?: SortOrderInput | SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     likes?: LikeOrderByRelationAggregateInput
@@ -4207,6 +4229,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Tweet"> | Date | string
     updatedAt?: DateTimeFilter<"Tweet"> | Date | string
     text?: StringFilter<"Tweet"> | string
+    photo?: StringNullableFilter<"Tweet"> | string | null
     userId?: IntFilter<"Tweet"> | number
     user?: XOR<UserRelationFilter, UserWhereInput>
     likes?: LikeListRelationFilter
@@ -4217,6 +4240,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     text?: SortOrder
+    photo?: SortOrderInput | SortOrder
     userId?: SortOrder
     _count?: TweetCountOrderByAggregateInput
     _avg?: TweetAvgOrderByAggregateInput
@@ -4233,6 +4257,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Tweet"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Tweet"> | Date | string
     text?: StringWithAggregatesFilter<"Tweet"> | string
+    photo?: StringNullableWithAggregatesFilter<"Tweet"> | string | null
     userId?: IntWithAggregatesFilter<"Tweet"> | number
   }
 
@@ -4337,6 +4362,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     user: UserCreateNestedOneWithoutTweetsInput
     likes?: LikeCreateNestedManyWithoutTweetInput
   }
@@ -4346,6 +4372,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     userId: number
     likes?: LikeUncheckedCreateNestedManyWithoutTweetInput
   }
@@ -4354,6 +4381,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTweetsNestedInput
     likes?: LikeUpdateManyWithoutTweetNestedInput
   }
@@ -4363,6 +4391,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     likes?: LikeUncheckedUpdateManyWithoutTweetNestedInput
   }
@@ -4372,6 +4401,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     userId: number
   }
 
@@ -4379,6 +4409,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TweetUncheckedUpdateManyInput = {
@@ -4386,6 +4417,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -4544,9 +4576,29 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type TweetCountOrderByAggregateInput = {
@@ -4554,6 +4606,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     text?: SortOrder
+    photo?: SortOrder
     userId?: SortOrder
   }
 
@@ -4567,6 +4620,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     text?: SortOrder
+    photo?: SortOrder
     userId?: SortOrder
   }
 
@@ -4575,6 +4629,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     text?: SortOrder
+    photo?: SortOrder
     userId?: SortOrder
   }
 
@@ -4595,6 +4650,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type TweetRelationFilter = {
@@ -4752,6 +4825,10 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type UserUpdateOneRequiredWithoutTweetsNestedInput = {
     create?: XOR<UserCreateWithoutTweetsInput, UserUncheckedCreateWithoutTweetsInput>
     connectOrCreate?: UserCreateOrConnectWithoutTweetsInput
@@ -4896,6 +4973,20 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4910,10 +5001,39 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type TweetCreateWithoutUserInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     likes?: LikeCreateNestedManyWithoutTweetInput
   }
 
@@ -4922,6 +5042,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     likes?: LikeUncheckedCreateNestedManyWithoutTweetInput
   }
 
@@ -4978,6 +5099,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Tweet"> | Date | string
     updatedAt?: DateTimeFilter<"Tweet"> | Date | string
     text?: StringFilter<"Tweet"> | string
+    photo?: StringNullableFilter<"Tweet"> | string | null
     userId?: IntFilter<"Tweet"> | number
   }
 
@@ -5105,6 +5227,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     user: UserCreateNestedOneWithoutTweetsInput
   }
 
@@ -5113,6 +5236,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
     userId: number
   }
 
@@ -5160,6 +5284,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTweetsNestedInput
   }
 
@@ -5168,6 +5293,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5176,6 +5302,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     text: string
+    photo?: string | null
   }
 
   export type LikeCreateManyUserInput = {
@@ -5187,6 +5314,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: LikeUpdateManyWithoutTweetNestedInput
   }
 
@@ -5195,6 +5323,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
     likes?: LikeUncheckedUpdateManyWithoutTweetNestedInput
   }
 
@@ -5203,6 +5332,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LikeUpdateWithoutUserInput = {

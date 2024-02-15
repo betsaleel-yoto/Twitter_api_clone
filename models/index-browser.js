@@ -118,6 +118,7 @@ exports.Prisma.TweetScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   text: 'text',
+  photo: 'photo',
   userId: 'userId'
 };
 
@@ -135,6 +136,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

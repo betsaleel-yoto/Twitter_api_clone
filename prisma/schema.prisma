@@ -25,13 +25,14 @@ model User {
 
 // Modèle pour les tweets (équivalent à vos "posts")
 model Tweet {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   text      String
-  userId    Int      // Clé étrangère: ID de l'utilisateur qui a créé le tweet
-  user      User     @relation(fields: [userId], references: [id]) // Relation: Un tweet est créé par un utilisateur
-  likes     Like[]   // Relation: Un tweet peut avoir plusieurs likes
+  photo     String?    // Champ pour le chemin de la photo, marqué comme optionnel avec "?"
+  userId    Int        // Clé étrangère: ID de l'utilisateur qui a créé le tweet
+  user      User       @relation(fields: [userId], references: [id]) // Relation: Un tweet est créé par un utilisateur
+  likes     Like[]     // Relation: Un tweet peut avoir plusieurs likes
 }
 
 // Modèle pour les likes
