@@ -1,6 +1,5 @@
 const { PrismaClient } = require('../models');
 
-
 const prisma = new PrismaClient()
 
 const Mesusers = async (req, res) => {
@@ -14,13 +13,19 @@ const Mesusers = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
   }
 };
-const IdUser = (req, res) => {
-  // const id = parseInt(req.params.id);
-  // res.send(
-  //   usersTwitter.filter((element) => {
-  //     return element.id === id;
-  //   })
-  // );
+const IdUser = async(req, res) => {
+  const id=parseInt(req.params.id)
+  try {
+    const users = await prisma.$transaction(async (prisma) => {
+      return prisma.user.findMany(); // Récupère tous les utilisateurs depuis la base de données
+    });
+    res.json(users.filter((element) => {
+      return element.id === id;
+    })); // Renvoie les utilisateurs par son id
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
+  }
 };
 
 const sendData = async (req, res) => {
