@@ -1,3 +1,5 @@
+const { PrismaClient } = require('../models');
+const prisma = new PrismaClient();
 const tweets = [
   {
     id: 1,
@@ -75,12 +77,25 @@ const allTweets = (req, res) => {
   res.send(tweets);
 };
 
-const postTweets = (req, res) => {
-  const bodyrequest = req.body;
-  bodyrequest.image=req.file.path;
-  tweets.push(bodyrequest)
-  res.send(tweets);
+
+
+const postTweets = async (req, res) => {
+  const { text } = req.body;
+
+  try {
+    const tweet = await prisma.tweet.create({
+      data: {
+        text
+      },
+    });
+    res.status(201).json(tweet);
+  } catch (error) {
+    console.error('Erreur lors de la création du tweet :', error);
+    res.status(500).json({ error: 'Erreur lors de la création du tweet.' });
+  }
+
 };
+
 
 const edtTweets = (req, res) => {
   const id = req.params.id;

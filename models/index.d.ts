@@ -23,11 +23,6 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type Tweet = $Result.DefaultSelection<Prisma.$TweetPayload>
-/**
- * Model Like
- * 
- */
-export type Like = $Result.DefaultSelection<Prisma.$LikePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -170,16 +165,6 @@ export class PrismaClient<
     * ```
     */
   get tweet(): Prisma.TweetDelegate<ExtArgs>;
-
-  /**
-   * `prisma.like`: Exposes CRUD operations for the **Like** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Likes
-    * const likes = await prisma.like.findMany()
-    * ```
-    */
-  get like(): Prisma.LikeDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -651,8 +636,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Tweet: 'Tweet',
-    Like: 'Like'
+    Tweet: 'Tweet'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -669,7 +653,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'tweet' | 'like'
+      modelProps: 'user' | 'tweet'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -802,72 +786,6 @@ export namespace Prisma {
           count: {
             args: Prisma.TweetCountArgs<ExtArgs>,
             result: $Utils.Optional<TweetCountAggregateOutputType> | number
-          }
-        }
-      }
-      Like: {
-        payload: Prisma.$LikePayload<ExtArgs>
-        fields: Prisma.LikeFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.LikeFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.LikeFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          findFirst: {
-            args: Prisma.LikeFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.LikeFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          findMany: {
-            args: Prisma.LikeFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>[]
-          }
-          create: {
-            args: Prisma.LikeCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          createMany: {
-            args: Prisma.LikeCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.LikeDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          update: {
-            args: Prisma.LikeUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          deleteMany: {
-            args: Prisma.LikeDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.LikeUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.LikeUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LikePayload>
-          }
-          aggregate: {
-            args: Prisma.LikeAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateLike>
-          }
-          groupBy: {
-            args: Prisma.LikeGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<LikeGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.LikeCountArgs<ExtArgs>,
-            result: $Utils.Optional<LikeCountAggregateOutputType> | number
           }
         }
       }
@@ -1013,83 +931,6 @@ export namespace Prisma {
   /**
    * Count Types
    */
-
-
-  /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    tweets: number
-    likes: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    tweets?: boolean | UserCountOutputTypeCountTweetsArgs
-    likes?: boolean | UserCountOutputTypeCountLikesArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountTweetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TweetWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
-  }
-
-
-
-  /**
-   * Count Type TweetCountOutputType
-   */
-
-  export type TweetCountOutputType = {
-    likes: number
-  }
-
-  export type TweetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    likes?: boolean | TweetCountOutputTypeCountLikesArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * TweetCountOutputType without action
-   */
-  export type TweetCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TweetCountOutputType
-     */
-    select?: TweetCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * TweetCountOutputType without action
-   */
-  export type TweetCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
-  }
 
 
 
@@ -1279,9 +1120,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     username?: boolean
-    tweets?: boolean | User$tweetsArgs<ExtArgs>
-    likes?: boolean | User$likesArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1290,19 +1128,10 @@ export namespace Prisma {
     username?: boolean
   }
 
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    tweets?: boolean | User$tweetsArgs<ExtArgs>
-    likes?: boolean | User$likesArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {
-      tweets: Prisma.$TweetPayload<ExtArgs>[]
-      likes: Prisma.$LikePayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
@@ -1672,9 +1501,6 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    tweets<T extends User$tweetsArgs<ExtArgs> = {}>(args?: Subset<T, User$tweetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TweetPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1721,10 +1547,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1740,10 +1562,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1758,10 +1576,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1808,10 +1622,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1857,10 +1667,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1901,10 +1707,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1931,10 +1733,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1970,10 +1768,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1997,10 +1791,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2019,48 +1809,6 @@ export namespace Prisma {
 
 
   /**
-   * User.tweets
-   */
-  export type User$tweetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tweet
-     */
-    select?: TweetSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    where?: TweetWhereInput
-    orderBy?: TweetOrderByWithRelationInput | TweetOrderByWithRelationInput[]
-    cursor?: TweetWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TweetScalarFieldEnum | TweetScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.likes
-   */
-  export type User$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    cursor?: LikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2068,10 +1816,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2090,12 +1834,10 @@ export namespace Prisma {
 
   export type TweetAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type TweetSumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type TweetMinAggregateOutputType = {
@@ -2104,7 +1846,6 @@ export namespace Prisma {
     updatedAt: Date | null
     text: string | null
     photo: string | null
-    userId: number | null
   }
 
   export type TweetMaxAggregateOutputType = {
@@ -2113,7 +1854,6 @@ export namespace Prisma {
     updatedAt: Date | null
     text: string | null
     photo: string | null
-    userId: number | null
   }
 
   export type TweetCountAggregateOutputType = {
@@ -2122,19 +1862,16 @@ export namespace Prisma {
     updatedAt: number
     text: number
     photo: number
-    userId: number
     _all: number
   }
 
 
   export type TweetAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type TweetSumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type TweetMinAggregateInputType = {
@@ -2143,7 +1880,6 @@ export namespace Prisma {
     updatedAt?: true
     text?: true
     photo?: true
-    userId?: true
   }
 
   export type TweetMaxAggregateInputType = {
@@ -2152,7 +1888,6 @@ export namespace Prisma {
     updatedAt?: true
     text?: true
     photo?: true
-    userId?: true
   }
 
   export type TweetCountAggregateInputType = {
@@ -2161,7 +1896,6 @@ export namespace Prisma {
     updatedAt?: true
     text?: true
     photo?: true
-    userId?: true
     _all?: true
   }
 
@@ -2257,7 +1991,6 @@ export namespace Prisma {
     updatedAt: Date
     text: string
     photo: string | null
-    userId: number
     _count: TweetCountAggregateOutputType | null
     _avg: TweetAvgAggregateOutputType | null
     _sum: TweetSumAggregateOutputType | null
@@ -2285,10 +2018,6 @@ export namespace Prisma {
     updatedAt?: boolean
     text?: boolean
     photo?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    likes?: boolean | Tweet$likesArgs<ExtArgs>
-    _count?: boolean | TweetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tweet"]>
 
   export type TweetSelectScalar = {
@@ -2297,29 +2026,18 @@ export namespace Prisma {
     updatedAt?: boolean
     text?: boolean
     photo?: boolean
-    userId?: boolean
-  }
-
-  export type TweetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    likes?: boolean | Tweet$likesArgs<ExtArgs>
-    _count?: boolean | TweetCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $TweetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tweet"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      likes: Prisma.$LikePayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
       updatedAt: Date
       text: string
       photo: string | null
-      userId: number
     }, ExtArgs["result"]["tweet"]>
     composites: {}
   }
@@ -2685,9 +2403,6 @@ export namespace Prisma {
   export interface Prisma__TweetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    likes<T extends Tweet$likesArgs<ExtArgs> = {}>(args?: Subset<T, Tweet$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2722,7 +2437,6 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"Tweet", 'DateTime'>
     readonly text: FieldRef<"Tweet", 'String'>
     readonly photo: FieldRef<"Tweet", 'String'>
-    readonly userId: FieldRef<"Tweet", 'Int'>
   }
     
 
@@ -2736,10 +2450,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Tweet
      */
     select?: TweetSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
     /**
      * Filter, which Tweet to fetch.
      */
@@ -2756,10 +2466,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * Filter, which Tweet to fetch.
      */
     where: TweetWhereUniqueInput
@@ -2774,10 +2480,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Tweet
      */
     select?: TweetSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
     /**
      * Filter, which Tweet to fetch.
      */
@@ -2824,10 +2526,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * Filter, which Tweet to fetch.
      */
     where?: TweetWhereInput
@@ -2873,10 +2571,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * Filter, which Tweets to fetch.
      */
     where?: TweetWhereInput
@@ -2917,10 +2611,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * The data needed to create a Tweet.
      */
     data: XOR<TweetCreateInput, TweetUncheckedCreateInput>
@@ -2947,10 +2637,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Tweet
      */
     select?: TweetSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
     /**
      * The data needed to update a Tweet.
      */
@@ -2986,10 +2672,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * The filter to search for the Tweet to update in case it exists.
      */
     where: TweetWhereUniqueInput
@@ -3013,10 +2695,6 @@ export namespace Prisma {
      */
     select?: TweetSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-    /**
      * Filter which Tweet to delete.
      */
     where: TweetWhereUniqueInput
@@ -3035,27 +2713,6 @@ export namespace Prisma {
 
 
   /**
-   * Tweet.likes
-   */
-  export type Tweet$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    cursor?: LikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-
-  /**
    * Tweet without action
    */
   export type TweetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3063,953 +2720,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Tweet
      */
     select?: TweetSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: TweetInclude<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model Like
-   */
-
-  export type AggregateLike = {
-    _count: LikeCountAggregateOutputType | null
-    _avg: LikeAvgAggregateOutputType | null
-    _sum: LikeSumAggregateOutputType | null
-    _min: LikeMinAggregateOutputType | null
-    _max: LikeMaxAggregateOutputType | null
-  }
-
-  export type LikeAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tweetId: number | null
-  }
-
-  export type LikeSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tweetId: number | null
-  }
-
-  export type LikeMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tweetId: number | null
-  }
-
-  export type LikeMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tweetId: number | null
-  }
-
-  export type LikeCountAggregateOutputType = {
-    id: number
-    userId: number
-    tweetId: number
-    _all: number
-  }
-
-
-  export type LikeAvgAggregateInputType = {
-    id?: true
-    userId?: true
-    tweetId?: true
-  }
-
-  export type LikeSumAggregateInputType = {
-    id?: true
-    userId?: true
-    tweetId?: true
-  }
-
-  export type LikeMinAggregateInputType = {
-    id?: true
-    userId?: true
-    tweetId?: true
-  }
-
-  export type LikeMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    tweetId?: true
-  }
-
-  export type LikeCountAggregateInputType = {
-    id?: true
-    userId?: true
-    tweetId?: true
-    _all?: true
-  }
-
-  export type LikeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Like to aggregate.
-     */
-    where?: LikeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Likes to fetch.
-     */
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LikeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Likes
-    **/
-    _count?: true | LikeCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: LikeAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: LikeSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LikeMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LikeMaxAggregateInputType
-  }
-
-  export type GetLikeAggregateType<T extends LikeAggregateArgs> = {
-        [P in keyof T & keyof AggregateLike]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLike[P]>
-      : GetScalarType<T[P], AggregateLike[P]>
-  }
-
-
-
-
-  export type LikeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithAggregationInput | LikeOrderByWithAggregationInput[]
-    by: LikeScalarFieldEnum[] | LikeScalarFieldEnum
-    having?: LikeScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LikeCountAggregateInputType | true
-    _avg?: LikeAvgAggregateInputType
-    _sum?: LikeSumAggregateInputType
-    _min?: LikeMinAggregateInputType
-    _max?: LikeMaxAggregateInputType
-  }
-
-  export type LikeGroupByOutputType = {
-    id: number
-    userId: number
-    tweetId: number
-    _count: LikeCountAggregateOutputType | null
-    _avg: LikeAvgAggregateOutputType | null
-    _sum: LikeSumAggregateOutputType | null
-    _min: LikeMinAggregateOutputType | null
-    _max: LikeMaxAggregateOutputType | null
-  }
-
-  type GetLikeGroupByPayload<T extends LikeGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LikeGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LikeGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LikeGroupByOutputType[P]>
-            : GetScalarType<T[P], LikeGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LikeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    tweetId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    tweet?: boolean | TweetDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["like"]>
-
-  export type LikeSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    tweetId?: boolean
-  }
-
-  export type LikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    tweet?: boolean | TweetDefaultArgs<ExtArgs>
-  }
-
-
-  export type $LikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Like"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      tweet: Prisma.$TweetPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      tweetId: number
-    }, ExtArgs["result"]["like"]>
-    composites: {}
-  }
-
-
-  type LikeGetPayload<S extends boolean | null | undefined | LikeDefaultArgs> = $Result.GetResult<Prisma.$LikePayload, S>
-
-  type LikeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<LikeFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: LikeCountAggregateInputType | true
-    }
-
-  export interface LikeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Like'], meta: { name: 'Like' } }
-    /**
-     * Find zero or one Like that matches the filter.
-     * @param {LikeFindUniqueArgs} args - Arguments to find a Like
-     * @example
-     * // Get one Like
-     * const like = await prisma.like.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends LikeFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeFindUniqueArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Like that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {LikeFindUniqueOrThrowArgs} args - Arguments to find a Like
-     * @example
-     * // Get one Like
-     * const like = await prisma.like.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends LikeFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Like that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeFindFirstArgs} args - Arguments to find a Like
-     * @example
-     * // Get one Like
-     * const like = await prisma.like.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends LikeFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeFindFirstArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Like that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeFindFirstOrThrowArgs} args - Arguments to find a Like
-     * @example
-     * // Get one Like
-     * const like = await prisma.like.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends LikeFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Likes that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Likes
-     * const likes = await prisma.like.findMany()
-     * 
-     * // Get first 10 Likes
-     * const likes = await prisma.like.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const likeWithIdOnly = await prisma.like.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends LikeFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Like.
-     * @param {LikeCreateArgs} args - Arguments to create a Like.
-     * @example
-     * // Create one Like
-     * const Like = await prisma.like.create({
-     *   data: {
-     *     // ... data to create a Like
-     *   }
-     * })
-     * 
-    **/
-    create<T extends LikeCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeCreateArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Likes.
-     *     @param {LikeCreateManyArgs} args - Arguments to create many Likes.
-     *     @example
-     *     // Create many Likes
-     *     const like = await prisma.like.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends LikeCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Like.
-     * @param {LikeDeleteArgs} args - Arguments to delete one Like.
-     * @example
-     * // Delete one Like
-     * const Like = await prisma.like.delete({
-     *   where: {
-     *     // ... filter to delete one Like
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends LikeDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeDeleteArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Like.
-     * @param {LikeUpdateArgs} args - Arguments to update one Like.
-     * @example
-     * // Update one Like
-     * const like = await prisma.like.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends LikeUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeUpdateArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Likes.
-     * @param {LikeDeleteManyArgs} args - Arguments to filter Likes to delete.
-     * @example
-     * // Delete a few Likes
-     * const { count } = await prisma.like.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends LikeDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LikeDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Likes
-     * const like = await prisma.like.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends LikeUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Like.
-     * @param {LikeUpsertArgs} args - Arguments to update or create a Like.
-     * @example
-     * // Update or create a Like
-     * const like = await prisma.like.upsert({
-     *   create: {
-     *     // ... data to create a Like
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Like we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends LikeUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, LikeUpsertArgs<ExtArgs>>
-    ): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeCountArgs} args - Arguments to filter Likes to count.
-     * @example
-     * // Count the number of Likes
-     * const count = await prisma.like.count({
-     *   where: {
-     *     // ... the filter for the Likes we want to count
-     *   }
-     * })
-    **/
-    count<T extends LikeCountArgs>(
-      args?: Subset<T, LikeCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LikeCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Like.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LikeAggregateArgs>(args: Subset<T, LikeAggregateArgs>): Prisma.PrismaPromise<GetLikeAggregateType<T>>
-
-    /**
-     * Group by Like.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LikeGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LikeGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LikeGroupByArgs['orderBy'] }
-        : { orderBy?: LikeGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LikeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLikeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Like model
-   */
-  readonly fields: LikeFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Like.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    tweet<T extends TweetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TweetDefaultArgs<ExtArgs>>): Prisma__TweetClient<$Result.GetResult<Prisma.$TweetPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the Like model
-   */ 
-  interface LikeFieldRefs {
-    readonly id: FieldRef<"Like", 'Int'>
-    readonly userId: FieldRef<"Like", 'Int'>
-    readonly tweetId: FieldRef<"Like", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * Like findUnique
-   */
-  export type LikeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter, which Like to fetch.
-     */
-    where: LikeWhereUniqueInput
-  }
-
-
-  /**
-   * Like findUniqueOrThrow
-   */
-  export type LikeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter, which Like to fetch.
-     */
-    where: LikeWhereUniqueInput
-  }
-
-
-  /**
-   * Like findFirst
-   */
-  export type LikeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter, which Like to fetch.
-     */
-    where?: LikeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Likes to fetch.
-     */
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Likes.
-     */
-    cursor?: LikeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Likes.
-     */
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-
-  /**
-   * Like findFirstOrThrow
-   */
-  export type LikeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter, which Like to fetch.
-     */
-    where?: LikeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Likes to fetch.
-     */
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Likes.
-     */
-    cursor?: LikeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Likes.
-     */
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-
-  /**
-   * Like findMany
-   */
-  export type LikeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter, which Likes to fetch.
-     */
-    where?: LikeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Likes to fetch.
-     */
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Likes.
-     */
-    cursor?: LikeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Likes.
-     */
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-
-  /**
-   * Like create
-   */
-  export type LikeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Like.
-     */
-    data: XOR<LikeCreateInput, LikeUncheckedCreateInput>
-  }
-
-
-  /**
-   * Like createMany
-   */
-  export type LikeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Likes.
-     */
-    data: LikeCreateManyInput | LikeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * Like update
-   */
-  export type LikeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Like.
-     */
-    data: XOR<LikeUpdateInput, LikeUncheckedUpdateInput>
-    /**
-     * Choose, which Like to update.
-     */
-    where: LikeWhereUniqueInput
-  }
-
-
-  /**
-   * Like updateMany
-   */
-  export type LikeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Likes.
-     */
-    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyInput>
-    /**
-     * Filter which Likes to update
-     */
-    where?: LikeWhereInput
-  }
-
-
-  /**
-   * Like upsert
-   */
-  export type LikeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Like to update in case it exists.
-     */
-    where: LikeWhereUniqueInput
-    /**
-     * In case the Like found by the `where` argument doesn't exist, create a new Like with this data.
-     */
-    create: XOR<LikeCreateInput, LikeUncheckedCreateInput>
-    /**
-     * In case the Like was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LikeUpdateInput, LikeUncheckedUpdateInput>
-  }
-
-
-  /**
-   * Like delete
-   */
-  export type LikeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
-    /**
-     * Filter which Like to delete.
-     */
-    where: LikeWhereUniqueInput
-  }
-
-
-  /**
-   * Like deleteMany
-   */
-  export type LikeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Likes to delete
-     */
-    where?: LikeWhereInput
-  }
-
-
-  /**
-   * Like without action
-   */
-  export type LikeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LikeInclude<ExtArgs> | null
   }
 
 
@@ -4042,20 +2752,10 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     text: 'text',
-    photo: 'photo',
-    userId: 'userId'
+    photo: 'photo'
   };
 
   export type TweetScalarFieldEnum = (typeof TweetScalarFieldEnum)[keyof typeof TweetScalarFieldEnum]
-
-
-  export const LikeScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    tweetId: 'tweetId'
-  };
-
-  export type LikeScalarFieldEnum = (typeof LikeScalarFieldEnum)[keyof typeof LikeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4153,16 +2853,12 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     email?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
-    tweets?: TweetListRelationFilter
-    likes?: LikeListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    tweets?: TweetOrderByRelationAggregateInput
-    likes?: LikeOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4172,8 +2868,6 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     username?: StringFilter<"User"> | string
-    tweets?: TweetListRelationFilter
-    likes?: LikeListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4205,9 +2899,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Tweet"> | Date | string
     text?: StringFilter<"Tweet"> | string
     photo?: StringNullableFilter<"Tweet"> | string | null
-    userId?: IntFilter<"Tweet"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    likes?: LikeListRelationFilter
   }
 
   export type TweetOrderByWithRelationInput = {
@@ -4216,9 +2907,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     text?: SortOrder
     photo?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    user?: UserOrderByWithRelationInput
-    likes?: LikeOrderByRelationAggregateInput
   }
 
   export type TweetWhereUniqueInput = Prisma.AtLeast<{
@@ -4230,9 +2918,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Tweet"> | Date | string
     text?: StringFilter<"Tweet"> | string
     photo?: StringNullableFilter<"Tweet"> | string | null
-    userId?: IntFilter<"Tweet"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    likes?: LikeListRelationFilter
   }, "id">
 
   export type TweetOrderByWithAggregationInput = {
@@ -4241,7 +2926,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     text?: SortOrder
     photo?: SortOrderInput | SortOrder
-    userId?: SortOrder
     _count?: TweetCountOrderByAggregateInput
     _avg?: TweetAvgOrderByAggregateInput
     _max?: TweetMaxOrderByAggregateInput
@@ -4258,87 +2942,28 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Tweet"> | Date | string
     text?: StringWithAggregatesFilter<"Tweet"> | string
     photo?: StringNullableWithAggregatesFilter<"Tweet"> | string | null
-    userId?: IntWithAggregatesFilter<"Tweet"> | number
-  }
-
-  export type LikeWhereInput = {
-    AND?: LikeWhereInput | LikeWhereInput[]
-    OR?: LikeWhereInput[]
-    NOT?: LikeWhereInput | LikeWhereInput[]
-    id?: IntFilter<"Like"> | number
-    userId?: IntFilter<"Like"> | number
-    tweetId?: IntFilter<"Like"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    tweet?: XOR<TweetRelationFilter, TweetWhereInput>
-  }
-
-  export type LikeOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-    user?: UserOrderByWithRelationInput
-    tweet?: TweetOrderByWithRelationInput
-  }
-
-  export type LikeWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: LikeWhereInput | LikeWhereInput[]
-    OR?: LikeWhereInput[]
-    NOT?: LikeWhereInput | LikeWhereInput[]
-    userId?: IntFilter<"Like"> | number
-    tweetId?: IntFilter<"Like"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    tweet?: XOR<TweetRelationFilter, TweetWhereInput>
-  }, "id">
-
-  export type LikeOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-    _count?: LikeCountOrderByAggregateInput
-    _avg?: LikeAvgOrderByAggregateInput
-    _max?: LikeMaxOrderByAggregateInput
-    _min?: LikeMinOrderByAggregateInput
-    _sum?: LikeSumOrderByAggregateInput
-  }
-
-  export type LikeScalarWhereWithAggregatesInput = {
-    AND?: LikeScalarWhereWithAggregatesInput | LikeScalarWhereWithAggregatesInput[]
-    OR?: LikeScalarWhereWithAggregatesInput[]
-    NOT?: LikeScalarWhereWithAggregatesInput | LikeScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Like"> | number
-    userId?: IntWithAggregatesFilter<"Like"> | number
-    tweetId?: IntWithAggregatesFilter<"Like"> | number
   }
 
   export type UserCreateInput = {
     email: string
     username: string
-    tweets?: TweetCreateNestedManyWithoutUserInput
-    likes?: LikeCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: number
     email: string
     username: string
-    tweets?: TweetUncheckedCreateNestedManyWithoutUserInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    tweets?: TweetUpdateManyWithoutUserNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    tweets?: TweetUncheckedUpdateManyWithoutUserNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -4363,8 +2988,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     text: string
     photo?: string | null
-    user: UserCreateNestedOneWithoutTweetsInput
-    likes?: LikeCreateNestedManyWithoutTweetInput
   }
 
   export type TweetUncheckedCreateInput = {
@@ -4373,8 +2996,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     text: string
     photo?: string | null
-    userId: number
-    likes?: LikeUncheckedCreateNestedManyWithoutTweetInput
   }
 
   export type TweetUpdateInput = {
@@ -4382,8 +3003,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutTweetsNestedInput
-    likes?: LikeUpdateManyWithoutTweetNestedInput
   }
 
   export type TweetUncheckedUpdateInput = {
@@ -4392,8 +3011,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
-    likes?: LikeUncheckedUpdateManyWithoutTweetNestedInput
   }
 
   export type TweetCreateManyInput = {
@@ -4402,7 +3019,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     text: string
     photo?: string | null
-    userId: number
   }
 
   export type TweetUpdateManyMutationInput = {
@@ -4418,45 +3034,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     text?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LikeCreateInput = {
-    user: UserCreateNestedOneWithoutLikesInput
-    tweet: TweetCreateNestedOneWithoutLikesInput
-  }
-
-  export type LikeUncheckedCreateInput = {
-    id?: number
-    userId: number
-    tweetId: number
-  }
-
-  export type LikeUpdateInput = {
-    user?: UserUpdateOneRequiredWithoutLikesNestedInput
-    tweet?: TweetUpdateOneRequiredWithoutLikesNestedInput
-  }
-
-  export type LikeUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    tweetId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LikeCreateManyInput = {
-    id?: number
-    userId: number
-    tweetId: number
-  }
-
-  export type LikeUpdateManyMutationInput = {
-
-  }
-
-  export type LikeUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    tweetId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -4483,26 +3060,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type TweetListRelationFilter = {
-    every?: TweetWhereInput
-    some?: TweetWhereInput
-    none?: TweetWhereInput
-  }
-
-  export type LikeListRelationFilter = {
-    every?: LikeWhereInput
-    some?: LikeWhereInput
-    none?: LikeWhereInput
-  }
-
-  export type TweetOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type LikeOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -4591,11 +3148,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -4607,12 +3159,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     text?: SortOrder
     photo?: SortOrder
-    userId?: SortOrder
   }
 
   export type TweetAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type TweetMaxOrderByAggregateInput = {
@@ -4621,7 +3171,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     text?: SortOrder
     photo?: SortOrder
-    userId?: SortOrder
   }
 
   export type TweetMinOrderByAggregateInput = {
@@ -4630,12 +3179,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     text?: SortOrder
     photo?: SortOrder
-    userId?: SortOrder
   }
 
   export type TweetSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -4670,99 +3217,8 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type TweetRelationFilter = {
-    is?: TweetWhereInput
-    isNot?: TweetWhereInput
-  }
-
-  export type LikeCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-  }
-
-  export type LikeAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-  }
-
-  export type LikeMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-  }
-
-  export type LikeMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-  }
-
-  export type LikeSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tweetId?: SortOrder
-  }
-
-  export type TweetCreateNestedManyWithoutUserInput = {
-    create?: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput> | TweetCreateWithoutUserInput[] | TweetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TweetCreateOrConnectWithoutUserInput | TweetCreateOrConnectWithoutUserInput[]
-    createMany?: TweetCreateManyUserInputEnvelope
-    connect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-  }
-
-  export type LikeCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
-  export type TweetUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput> | TweetCreateWithoutUserInput[] | TweetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TweetCreateOrConnectWithoutUserInput | TweetCreateOrConnectWithoutUserInput[]
-    createMany?: TweetCreateManyUserInputEnvelope
-    connect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-  }
-
-  export type LikeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type TweetUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput> | TweetCreateWithoutUserInput[] | TweetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TweetCreateOrConnectWithoutUserInput | TweetCreateOrConnectWithoutUserInput[]
-    upsert?: TweetUpsertWithWhereUniqueWithoutUserInput | TweetUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TweetCreateManyUserInputEnvelope
-    set?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    disconnect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    delete?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    connect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    update?: TweetUpdateWithWhereUniqueWithoutUserInput | TweetUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TweetUpdateManyWithWhereWithoutUserInput | TweetUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TweetScalarWhereInput | TweetScalarWhereInput[]
-  }
-
-  export type LikeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -4773,124 +3229,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type TweetUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput> | TweetCreateWithoutUserInput[] | TweetUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TweetCreateOrConnectWithoutUserInput | TweetCreateOrConnectWithoutUserInput[]
-    upsert?: TweetUpsertWithWhereUniqueWithoutUserInput | TweetUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TweetCreateManyUserInputEnvelope
-    set?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    disconnect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    delete?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    connect?: TweetWhereUniqueInput | TweetWhereUniqueInput[]
-    update?: TweetUpdateWithWhereUniqueWithoutUserInput | TweetUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TweetUpdateManyWithWhereWithoutUserInput | TweetUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TweetScalarWhereInput | TweetScalarWhereInput[]
-  }
-
-  export type LikeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput> | LikeCreateWithoutUserInput[] | LikeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutUserInput | LikeCreateOrConnectWithoutUserInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutUserInput | LikeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikeCreateManyUserInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutUserInput | LikeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutUserInput | LikeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutTweetsInput = {
-    create?: XOR<UserCreateWithoutTweetsInput, UserUncheckedCreateWithoutTweetsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTweetsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type LikeCreateNestedManyWithoutTweetInput = {
-    create?: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput> | LikeCreateWithoutTweetInput[] | LikeUncheckedCreateWithoutTweetInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutTweetInput | LikeCreateOrConnectWithoutTweetInput[]
-    createMany?: LikeCreateManyTweetInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
-  export type LikeUncheckedCreateNestedManyWithoutTweetInput = {
-    create?: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput> | LikeCreateWithoutTweetInput[] | LikeUncheckedCreateWithoutTweetInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutTweetInput | LikeCreateOrConnectWithoutTweetInput[]
-    createMany?: LikeCreateManyTweetInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type UserUpdateOneRequiredWithoutTweetsNestedInput = {
-    create?: XOR<UserCreateWithoutTweetsInput, UserUncheckedCreateWithoutTweetsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTweetsInput
-    upsert?: UserUpsertWithoutTweetsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTweetsInput, UserUpdateWithoutTweetsInput>, UserUncheckedUpdateWithoutTweetsInput>
-  }
-
-  export type LikeUpdateManyWithoutTweetNestedInput = {
-    create?: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput> | LikeCreateWithoutTweetInput[] | LikeUncheckedCreateWithoutTweetInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutTweetInput | LikeCreateOrConnectWithoutTweetInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutTweetInput | LikeUpsertWithWhereUniqueWithoutTweetInput[]
-    createMany?: LikeCreateManyTweetInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutTweetInput | LikeUpdateWithWhereUniqueWithoutTweetInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutTweetInput | LikeUpdateManyWithWhereWithoutTweetInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
-  }
-
-  export type LikeUncheckedUpdateManyWithoutTweetNestedInput = {
-    create?: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput> | LikeCreateWithoutTweetInput[] | LikeUncheckedCreateWithoutTweetInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutTweetInput | LikeCreateOrConnectWithoutTweetInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutTweetInput | LikeUpsertWithWhereUniqueWithoutTweetInput[]
-    createMany?: LikeCreateManyTweetInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutTweetInput | LikeUpdateWithWhereUniqueWithoutTweetInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutTweetInput | LikeUpdateManyWithWhereWithoutTweetInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutLikesInput = {
-    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type TweetCreateNestedOneWithoutLikesInput = {
-    create?: XOR<TweetCreateWithoutLikesInput, TweetUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: TweetCreateOrConnectWithoutLikesInput
-    connect?: TweetWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutLikesNestedInput = {
-    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
-    upsert?: UserUpsertWithoutLikesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikesInput, UserUpdateWithoutLikesInput>, UserUncheckedUpdateWithoutLikesInput>
-  }
-
-  export type TweetUpdateOneRequiredWithoutLikesNestedInput = {
-    create?: XOR<TweetCreateWithoutLikesInput, TweetUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: TweetCreateOrConnectWithoutLikesInput
-    upsert?: TweetUpsertWithoutLikesInput
-    connect?: TweetWhereUniqueInput
-    update?: XOR<XOR<TweetUpdateToOneWithWhereWithoutLikesInput, TweetUpdateWithoutLikesInput>, TweetUncheckedUpdateWithoutLikesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5029,358 +3373,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type TweetCreateWithoutUserInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    text: string
-    photo?: string | null
-    likes?: LikeCreateNestedManyWithoutTweetInput
-  }
-
-  export type TweetUncheckedCreateWithoutUserInput = {
-    id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    text: string
-    photo?: string | null
-    likes?: LikeUncheckedCreateNestedManyWithoutTweetInput
-  }
-
-  export type TweetCreateOrConnectWithoutUserInput = {
-    where: TweetWhereUniqueInput
-    create: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput>
-  }
-
-  export type TweetCreateManyUserInputEnvelope = {
-    data: TweetCreateManyUserInput | TweetCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LikeCreateWithoutUserInput = {
-    tweet: TweetCreateNestedOneWithoutLikesInput
-  }
-
-  export type LikeUncheckedCreateWithoutUserInput = {
-    id?: number
-    tweetId: number
-  }
-
-  export type LikeCreateOrConnectWithoutUserInput = {
-    where: LikeWhereUniqueInput
-    create: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput>
-  }
-
-  export type LikeCreateManyUserInputEnvelope = {
-    data: LikeCreateManyUserInput | LikeCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TweetUpsertWithWhereUniqueWithoutUserInput = {
-    where: TweetWhereUniqueInput
-    update: XOR<TweetUpdateWithoutUserInput, TweetUncheckedUpdateWithoutUserInput>
-    create: XOR<TweetCreateWithoutUserInput, TweetUncheckedCreateWithoutUserInput>
-  }
-
-  export type TweetUpdateWithWhereUniqueWithoutUserInput = {
-    where: TweetWhereUniqueInput
-    data: XOR<TweetUpdateWithoutUserInput, TweetUncheckedUpdateWithoutUserInput>
-  }
-
-  export type TweetUpdateManyWithWhereWithoutUserInput = {
-    where: TweetScalarWhereInput
-    data: XOR<TweetUpdateManyMutationInput, TweetUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type TweetScalarWhereInput = {
-    AND?: TweetScalarWhereInput | TweetScalarWhereInput[]
-    OR?: TweetScalarWhereInput[]
-    NOT?: TweetScalarWhereInput | TweetScalarWhereInput[]
-    id?: IntFilter<"Tweet"> | number
-    createdAt?: DateTimeFilter<"Tweet"> | Date | string
-    updatedAt?: DateTimeFilter<"Tweet"> | Date | string
-    text?: StringFilter<"Tweet"> | string
-    photo?: StringNullableFilter<"Tweet"> | string | null
-    userId?: IntFilter<"Tweet"> | number
-  }
-
-  export type LikeUpsertWithWhereUniqueWithoutUserInput = {
-    where: LikeWhereUniqueInput
-    update: XOR<LikeUpdateWithoutUserInput, LikeUncheckedUpdateWithoutUserInput>
-    create: XOR<LikeCreateWithoutUserInput, LikeUncheckedCreateWithoutUserInput>
-  }
-
-  export type LikeUpdateWithWhereUniqueWithoutUserInput = {
-    where: LikeWhereUniqueInput
-    data: XOR<LikeUpdateWithoutUserInput, LikeUncheckedUpdateWithoutUserInput>
-  }
-
-  export type LikeUpdateManyWithWhereWithoutUserInput = {
-    where: LikeScalarWhereInput
-    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type LikeScalarWhereInput = {
-    AND?: LikeScalarWhereInput | LikeScalarWhereInput[]
-    OR?: LikeScalarWhereInput[]
-    NOT?: LikeScalarWhereInput | LikeScalarWhereInput[]
-    id?: IntFilter<"Like"> | number
-    userId?: IntFilter<"Like"> | number
-    tweetId?: IntFilter<"Like"> | number
-  }
-
-  export type UserCreateWithoutTweetsInput = {
-    email: string
-    username: string
-    likes?: LikeCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutTweetsInput = {
-    id?: number
-    email: string
-    username: string
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutTweetsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutTweetsInput, UserUncheckedCreateWithoutTweetsInput>
-  }
-
-  export type LikeCreateWithoutTweetInput = {
-    user: UserCreateNestedOneWithoutLikesInput
-  }
-
-  export type LikeUncheckedCreateWithoutTweetInput = {
-    id?: number
-    userId: number
-  }
-
-  export type LikeCreateOrConnectWithoutTweetInput = {
-    where: LikeWhereUniqueInput
-    create: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput>
-  }
-
-  export type LikeCreateManyTweetInputEnvelope = {
-    data: LikeCreateManyTweetInput | LikeCreateManyTweetInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutTweetsInput = {
-    update: XOR<UserUpdateWithoutTweetsInput, UserUncheckedUpdateWithoutTweetsInput>
-    create: XOR<UserCreateWithoutTweetsInput, UserUncheckedCreateWithoutTweetsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutTweetsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutTweetsInput, UserUncheckedUpdateWithoutTweetsInput>
-  }
-
-  export type UserUpdateWithoutTweetsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    likes?: LikeUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutTweetsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type LikeUpsertWithWhereUniqueWithoutTweetInput = {
-    where: LikeWhereUniqueInput
-    update: XOR<LikeUpdateWithoutTweetInput, LikeUncheckedUpdateWithoutTweetInput>
-    create: XOR<LikeCreateWithoutTweetInput, LikeUncheckedCreateWithoutTweetInput>
-  }
-
-  export type LikeUpdateWithWhereUniqueWithoutTweetInput = {
-    where: LikeWhereUniqueInput
-    data: XOR<LikeUpdateWithoutTweetInput, LikeUncheckedUpdateWithoutTweetInput>
-  }
-
-  export type LikeUpdateManyWithWhereWithoutTweetInput = {
-    where: LikeScalarWhereInput
-    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyWithoutTweetInput>
-  }
-
-  export type UserCreateWithoutLikesInput = {
-    email: string
-    username: string
-    tweets?: TweetCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLikesInput = {
-    id?: number
-    email: string
-    username: string
-    tweets?: TweetUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLikesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-  }
-
-  export type TweetCreateWithoutLikesInput = {
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    text: string
-    photo?: string | null
-    user: UserCreateNestedOneWithoutTweetsInput
-  }
-
-  export type TweetUncheckedCreateWithoutLikesInput = {
-    id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    text: string
-    photo?: string | null
-    userId: number
-  }
-
-  export type TweetCreateOrConnectWithoutLikesInput = {
-    where: TweetWhereUniqueInput
-    create: XOR<TweetCreateWithoutLikesInput, TweetUncheckedCreateWithoutLikesInput>
-  }
-
-  export type UserUpsertWithoutLikesInput = {
-    update: XOR<UserUpdateWithoutLikesInput, UserUncheckedUpdateWithoutLikesInput>
-    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLikesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLikesInput, UserUncheckedUpdateWithoutLikesInput>
-  }
-
-  export type UserUpdateWithoutLikesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    tweets?: TweetUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLikesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    tweets?: TweetUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type TweetUpsertWithoutLikesInput = {
-    update: XOR<TweetUpdateWithoutLikesInput, TweetUncheckedUpdateWithoutLikesInput>
-    create: XOR<TweetCreateWithoutLikesInput, TweetUncheckedCreateWithoutLikesInput>
-    where?: TweetWhereInput
-  }
-
-  export type TweetUpdateToOneWithWhereWithoutLikesInput = {
-    where?: TweetWhereInput
-    data: XOR<TweetUpdateWithoutLikesInput, TweetUncheckedUpdateWithoutLikesInput>
-  }
-
-  export type TweetUpdateWithoutLikesInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    text?: StringFieldUpdateOperationsInput | string
-    photo?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutTweetsNestedInput
-  }
-
-  export type TweetUncheckedUpdateWithoutLikesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    text?: StringFieldUpdateOperationsInput | string
-    photo?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type TweetCreateManyUserInput = {
-    id?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    text: string
-    photo?: string | null
-  }
-
-  export type LikeCreateManyUserInput = {
-    id?: number
-    tweetId: number
-  }
-
-  export type TweetUpdateWithoutUserInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    text?: StringFieldUpdateOperationsInput | string
-    photo?: NullableStringFieldUpdateOperationsInput | string | null
-    likes?: LikeUpdateManyWithoutTweetNestedInput
-  }
-
-  export type TweetUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    text?: StringFieldUpdateOperationsInput | string
-    photo?: NullableStringFieldUpdateOperationsInput | string | null
-    likes?: LikeUncheckedUpdateManyWithoutTweetNestedInput
-  }
-
-  export type TweetUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    text?: StringFieldUpdateOperationsInput | string
-    photo?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type LikeUpdateWithoutUserInput = {
-    tweet?: TweetUpdateOneRequiredWithoutLikesNestedInput
-  }
-
-  export type LikeUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tweetId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LikeUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tweetId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LikeCreateManyTweetInput = {
-    id?: number
-    userId: number
-  }
-
-  export type LikeUpdateWithoutTweetInput = {
-    user?: UserUpdateOneRequiredWithoutLikesNestedInput
-  }
-
-  export type LikeUncheckedUpdateWithoutTweetInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LikeUncheckedUpdateManyWithoutTweetInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
 
 
   /**
    * Aliases for legacy arg types
    */
-    /**
-     * @deprecated Use UserCountOutputTypeDefaultArgs instead
-     */
-    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use TweetCountOutputTypeDefaultArgs instead
-     */
-    export type TweetCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TweetCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -5389,10 +3386,6 @@ export namespace Prisma {
      * @deprecated Use TweetDefaultArgs instead
      */
     export type TweetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TweetDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use LikeDefaultArgs instead
-     */
-    export type LikeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LikeDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

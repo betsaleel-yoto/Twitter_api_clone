@@ -18,8 +18,6 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   username  String
-  tweets    Tweet[]  // Relation: Un utilisateur peut avoir plusieurs tweets
-  likes     Like[]   // Relation: Un utilisateur peut liker plusieurs tweets
 }
 
 
@@ -30,18 +28,9 @@ model Tweet {
   updatedAt DateTime   @updatedAt
   text      String
   photo     String?    // Champ pour le chemin de la photo, marqué comme optionnel avec "?"
-  userId    Int        // Clé étrangère: ID de l'utilisateur qui a créé le tweet
-  user      User       @relation(fields: [userId], references: [id]) // Relation: Un tweet est créé par un utilisateur
-  likes     Like[]     // Relation: Un tweet peut avoir plusieurs likes
 }
 
 // Modèle pour les likes
-model Like {
-  id        Int      @id @default(autoincrement())
-  userId    Int      // Clé étrangère: ID de l'utilisateur qui a liké
-  user      User     @relation(fields: [userId], references: [id]) // Relation: Un like est effectué par un utilisateur
-  tweetId   Int      // Clé étrangère: ID du tweet liké
-  tweet     Tweet    @relation(fields: [tweetId], references: [id]) // Relation: Un like est associé à un tweet
-}
+
 
 

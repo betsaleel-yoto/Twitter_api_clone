@@ -118,14 +118,7 @@ exports.Prisma.TweetScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   text: 'text',
-  photo: 'photo',
-  userId: 'userId'
-};
-
-exports.Prisma.LikeScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tweetId: 'tweetId'
+  photo: 'photo'
 };
 
 exports.Prisma.SortOrder = {
@@ -146,8 +139,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Tweet: 'Tweet',
-  Like: 'Like'
+  Tweet: 'Tweet'
 };
 
 /**
