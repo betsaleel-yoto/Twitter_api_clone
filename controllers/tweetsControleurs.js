@@ -72,9 +72,14 @@ const idUserTweets = (req, res) => {
   );
 };
 
-const allTweets = (req, res) => {
-  res.set("Content-Type", "application/json");
-  res.send(tweets);
+const allTweets = async (req, res) => {
+  try {
+    const tweets = await prisma.tweet.findMany();
+    res.status(200).json(tweets);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des tweets :', error);
+    res.status(500).json({ error: 'Erreur lors de la récupération des tweets.' });
+  }
 };
 
 
@@ -97,15 +102,34 @@ const postTweets = async (req, res) => {
 };
 
 
-const edtTweets = (req, res) => {
-  const id = req.params.id;
-  res.send(putLikes);
+const edtTweets =  async (req, res) => {
+  const id = parseInt(req.params.id);
+  const { text } = req.body;
+
+  try {
+    const tweet = await prisma.tweet.update({
+      where: { id },
+      data: { text },
+    });
+    res.status(200).json(tweet);
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du tweet :', error);
+    res.status(500).json({ error: 'Erreur lors de la mise à jour du tweet.' });
+  };
 };
 
-const removeTweets = (req, res) => {
+const removeTweets = async (req, res) => {
   const id = parseInt(req.params.id);
-  tweets.splice(id - 1, 1);
-  res.send("suprrimé");
+
+  try {
+    await prisma.tweet.delete({
+      where: { id },
+    });
+    res.status(200).json({ message: 'Tweet supprimé avec succès.' });
+  } catch (error) {
+    console.error('Erreur lors de la suppression du tweet :', error);
+    res.status(500).json({ error: 'Erreur lors de la suppression du tweet.' });
+  }
 };
 
 
