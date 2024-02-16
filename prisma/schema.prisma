@@ -18,6 +18,8 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   username  String
+  likes     Like[] 
+  unlikes   Unlike[] 
 }
 
 
@@ -28,9 +30,26 @@ model Tweet {
   updatedAt DateTime   @updatedAt
   text      String
   photo     String?    // Champ pour le chemin de la photo, marqué comme optionnel avec "?"
+  unlikes   Unlike[]
+  likes     Like[]
 }
 
 // Modèle pour les likes
+model Like {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  tweet     Tweet    @relation(fields: [tweetId], references: [id])
+  tweetId   Int
+}
 
+// Modèle pour les unlikes
+model Unlike {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  tweet     Tweet    @relation(fields: [tweetId], references: [id])
+  tweetId   Int
+}
 
 
