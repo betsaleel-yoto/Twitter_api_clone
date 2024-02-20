@@ -6,6 +6,7 @@ const users = require("./routes/usersRoutes.js");
 const path = require("path");
 const like=require('./routes/likesRoutes.js')
 const cors = require('cors');
+const verifierUtilisateur=require('./routes/VerificationRoute.js')
 
 app.use(cors({
   origin: 'http://localhost:5174'
@@ -13,6 +14,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "controllers", "uploads")));
 
+app.use("/verify",verifierUtilisateur)
 app.use("/users", users);
 app.use("/tweets", tweets);
 app.use('/tweets',like)
