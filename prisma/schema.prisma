@@ -18,9 +18,15 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   username  String
-  likes     Like[] 
-  unlikes   Unlike[] 
+  password  String
+  likes     Like[]
+  unlikes   Unlike[]
+
+  @@map("users")
 }
+
+
+
 
 
 // Modèle pour les tweets (équivalent à vos "posts")
