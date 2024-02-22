@@ -1,6 +1,9 @@
+const jwt = require('jsonwebtoken');
 const { PrismaClient } = require("../models");
 
 const prisma = new PrismaClient();
+
+const SECRET_KEY = 'root'; 
 
 const verifierUtilisateur = async (req, res) => {
   try {
@@ -9,7 +12,9 @@ const verifierUtilisateur = async (req, res) => {
     const utilisateur = await verification(userInfo);
 
     if (utilisateur.exists) {
-      res.status(200).json({ message: "redirect" });
+      const token = jwt.sign({ userId: utilisateur.id }, SECRET_KEY); // Génère un token JWT
+
+      res.status(200).json({ message: "redirect", token: token }); // Envoie le token dans la réponse
     } else {
       res.status(404).json({ message: "User not found" }); 
     }
@@ -34,7 +39,7 @@ async function verification(userInfo) {
     });
 
     if (utilisateur) {
-      return { exists: true };
+      return { exists: true, id: utilisateur.id }; 
     } else {
       return { exists: false };
     }

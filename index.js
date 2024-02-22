@@ -7,9 +7,9 @@ const path = require("path");
 const like=require('./routes/likesRoutes.js')
 const cors = require('cors');
 const verifierUtilisateur=require('./routes/VerificationRoute.js')
-
+const authenticateToken = require('./controllers/controllersAuthentify.js');
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: 'http://localhost:5174'
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended:true})); 

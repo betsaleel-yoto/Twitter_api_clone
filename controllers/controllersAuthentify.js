@@ -1,27 +1,41 @@
-const passport = require('passport');
-const passportJWT = require('passport-jwt');
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
 const jwt = require('jsonwebtoken');
+const { PrismaClient } = require('../models');
 
-const secretKey = 'secret';
+const prisma = new PrismaClient();
+const SECRET_KEY = 'root'; 
 
-const jwtOptions = {
-    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: secretKey
+const authenticateToken = async (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Missing token' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const userId = decoded.userId;
+
+    // Ajout l'ID de l'utilisateur à l'objet de requête pour une utilisation ultérieure
+    req.userId = userId;
+
+    // Vérifie si l'utilisateur existe dans la base de données
+    const utilisateur = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!utilisateur) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    // Si l'utilisateur existe, passez à l'étape suivante du middleware
+    next();
+  } catch (error) {
+    console.error('Erreur de vérification du token:', error);
+    return res.status(403).json({ message: 'Token verification failed' });
+  }
 };
 
-passport.use(new JWTStrategy(jwtOptions, function(jwtPayload, done) {
-    // Vérifier si l'utilisateur existe en fonction de jwtPayload
-    // Par exemple, vous pouvez vérifier en utilisant une base de données
-    if (jwtPayload.user) {
-        return done(null, jwtPayload.user);
-    } else {
-        return done(null, false);
-    }
-}));
-
-// Middleware d'authentification Passport.js
-const authenticateJWT = passport.authenticate('jwt', { session: false });
-
-module.exports = { authenticateJWT };
+module.exports = authenticateToken;
