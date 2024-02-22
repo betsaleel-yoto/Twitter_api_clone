@@ -9,10 +9,10 @@ const cors = require('cors');
 const verifierUtilisateur=require('./routes/VerificationRoute.js')
 
 app.use(cors({
-  origin: 'http://localhost:5174'
+  origin: 'http://localhost:5173'
 }));
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true})); 
 app.use(express.static(path.join(__dirname, "controllers", "uploads")));
 
 app.use("/verify",verifierUtilisateur)
