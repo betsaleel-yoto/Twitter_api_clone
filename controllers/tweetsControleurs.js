@@ -23,12 +23,13 @@ const allTweets = async (req, res) => {
 
 
 const postTweets = async (req, res) => {
-  const { text } = req.body;
+  const { text,photo } = req.body;
 
   try {
     const tweet = await prisma.tweet.create({
       data: {
-        text
+        text,
+        photo
       },
     });
     res.status(201).json(tweet);
