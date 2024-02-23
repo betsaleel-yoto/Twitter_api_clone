@@ -28,27 +28,6 @@ const IdUser = async(req, res) => {
   }
 };
 
-// const sendData = async (req, res) => {
-//   try {
-//     const { email, username, password } = req.body; // Récupère les données du corps de la requête, y compris le mot de passe
-
-//     await prisma.$transaction(async (prisma) => {
-//       const user = await prisma.user.create({
-//         data: {
-//           email,
-//           username,
-//           password, 
-//         },
-//       });
-
-//       console.log("User created:", user);
-//       res.status(201).json(user); // Renvoie la réponse avec le nouvel utilisateur créé
-//     });
-//   } catch (error) {
-//     console.error("Error creating user:", error);
-//     res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
-//   }
-// };
 const sendData = async (req, res) => {
   const { email, username, password } = req.body;
 
@@ -97,13 +76,15 @@ const userDelete = async (req, res) => {
 const editUsers = async (req, res) => {
   try {
     const { id } = req.params; // Récupère l'ID de l'utilisateur à mettre à jour depuis les paramètres de la requête
-    const { email, username,password } = req.body; // Récupère les nouvelles données de l'utilisateur depuis le corps de la requête
+    const { email, username, password } = req.body; // Récupère les nouvelles données de l'utilisateur depuis le corps de la requête
+
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash du nouveau mot de passe avec bcrypt
 
     await prisma.$transaction(async (prisma) => {
       // Utilise Prisma pour mettre à jour l'utilisateur dans la base de données
       const updatedUser = await prisma.user.update({
         where: { id: parseInt(id) }, // Spécifie l'utilisateur à mettre à jour en utilisant son ID
-        data: { email, username,password }, // Spécifie les nouvelles données de l'utilisateur
+        data: { email, username, password: hashedPassword }, // Spécifie les nouvelles données de l'utilisateur
       });
 
       console.log('User updated:', updatedUser);
@@ -114,6 +95,7 @@ const editUsers = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' }); // Gère les erreurs internes du serveur
   }
 };
+
 module.exports = {
   Mesusers,
   IdUser,
