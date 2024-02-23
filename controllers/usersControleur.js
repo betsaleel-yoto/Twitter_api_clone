@@ -1,5 +1,5 @@
 const { PrismaClient } = require('../models');
-
+const bcrypt = require('bcrypt');
 const prisma = new PrismaClient()
 
 const Mesusers = async (req, res) => {
@@ -49,24 +49,28 @@ const IdUser = async(req, res) => {
 //     res.status(500).json({ error: "Internal Server Error" }); // Gère les erreurs internes du serveur
 //   }
 // };
-const sendData = async(req,res)=>{
+const sendData = async (req, res) => {
   const { email, username, password } = req.body;
 
-  try{
-const user= await prisma.user.create({
-  data:{
-    email,
-    username,
-    password
-  },
-});
-console.log(user);
-res.status(201).json(user)
-  }catch(error){
-    console.error('Erreur lors de la création du user:',error)
-    res.status(500).json({error:'Erreur lors de la création de l\'utilisateur'})
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash du mot de passe avec bcrypt
+    
+    const user = await prisma.user.create({
+      data: {
+        email,
+        username,
+        password: hashedPassword, // Enregistre le mot de passe crypté dans la base de données
+      },
+    });
+
+    console.log(user);
+    res.status(201).json(user);
+  } catch (error) {
+    console.error('Erreur lors de la création du user:', error);
+    res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' });
   }
-}
+};
+
 
 
 const userDelete = async (req, res) => {
